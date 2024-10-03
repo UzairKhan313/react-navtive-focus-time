@@ -1,21 +1,16 @@
-# YourAppName
+# Focus Time
 
-![App Banner](assets/banner.png)
+**focus Tiem** is a productivity mobile application built with React Native and Expo. It allows users to input tasks and focus on them for predetermined time intervals (10, 15, 20 minutes) to enhance concentration and productivity. Whether you're studying, working, or managing daily tasks, **YourAppName** helps you stay on track and manage your time effectively.
+
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
-- [Screenshots](#screenshots)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Screenshots](#screenshots)
 - [Contact](#contact)
 
-## Overview
-
-**YourAppName** is a productivity mobile application built with React Native and Expo. It allows users to input tasks and focus on them for predetermined time intervals (10, 15, 20 minutes) to enhance concentration and productivity. Whether you're studying, working, or managing daily tasks, **YourAppName** helps you stay on track and manage your time effectively.
 
 ## Features
 
@@ -60,7 +55,7 @@ Follow these steps to set up and run the project locally.
    ```
 
 ## Screenshots
+<table> <tr> <td><img src="assets/app_1.jpg" alt="Home Screen" width="300"/></td> <td><img src="assets/app_2.jpg" alt="Add Task" width="300"/></td> </tr> </table>
 
-![Home Screen](assets/app_1.jpg)
-
-![Add Task](assets/app_2.jpg)
+## Contact me
+Email: [uzairkhaan2003@gmail.com](mailto:uzairkhaan2003@gmail.com)

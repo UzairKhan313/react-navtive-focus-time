@@ -32,15 +32,15 @@ const Focus = ({ addCurrentSubject }) => {
 export default Focus;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: {},
   textInput: {
     flex: 0.8,
     marginRight: spacing.sm,
+    fontSize: 12,
   },
   inputContainer: {
     padding: spacing.lg,
+    paddingHorizontal: spacing.sm,
     justifyContent: "center",
     flexDirection: "row",
   },

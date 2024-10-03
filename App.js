@@ -12,19 +12,24 @@ import { StatusBar as ExpoStatusbar } from "expo-status-bar";
 import Timer from "./src/components/Timer";
 import Focus from "./src/components/Focus";
 import { colors } from "./src/utils/colors";
+import FocusedHistory from "./src/components/FocusedHistory";
 
 export default function App() {
-  const [currenSuject, addCurrentSubject] = useState("test");
+  const [currenSuject, setCurrentSubject] = useState(null);
+  const [history, setHistory] = useState([]);
   return (
     <SafeAreaView style={styles.container}>
       <ExpoStatusbar style="light" />
       {!currenSuject ? (
-        <Focus addCurrentSubject={addCurrentSubject} />
+        <>
+          <Focus addCurrentSubject={setCurrentSubject} />
+          <FocusedHistory history={history} />
+        </>
       ) : (
         <Timer
           focusSubject={currenSuject}
-          onTimeEnd={() => {}}
-          clearSubject={() => {}}
+          onTimeEnd={(subject) => setHistory([...history, subject])}
+          clearSubject={() => setCurrentSubject(null)}
         />
       )}
     </SafeAreaView>

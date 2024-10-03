@@ -6,6 +6,8 @@ import { Countdown } from "./CountDown";
 import { RoundedButton } from "./RoundedButton";
 import { spacing } from "../utils/size";
 import { colors } from "../utils/colors";
+import Timing from "./Timing";
+import { useKeepAwake } from "expo-keep-awake";
 
 const ONE_SECOND_IN_MS = 1000;
 const PATTERN = [
@@ -17,9 +19,18 @@ const PATTERN = [
 ];
 
 const Timer = ({ focusSubject, onTimeEnd, clearSubject }) => {
+  useKeepAwake();
   const [isStarted, setIsStarted] = useState(false);
   const [progress, setProgress] = useState(1);
   const [minutes, setMinutes] = useState(0.1);
+
+  const onEnd = (onReset) => {
+    Vibration.vibrate(PATTERN);
+    setIsStarted(false);
+    setProgress(1);
+    onReset();
+    onTimeEnd(focusSubject);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.contDown}>
@@ -27,7 +38,7 @@ const Timer = ({ focusSubject, onTimeEnd, clearSubject }) => {
           minutes={minutes}
           onProgress={(progress) => setProgress(progress)}
           isPaused={!isStarted}
-          onEnd={() => Vibration.vibrate(PATTERN)}
+          onEnd={onEnd}
         />
         <View style={{ paddingTop: spacing.xxl }}>
           <Text style={styles.title}>Focuing On :</Text>
@@ -42,12 +53,20 @@ const Timer = ({ focusSubject, onTimeEnd, clearSubject }) => {
         />
       </View>
 
+      <View style={styles.timingWrapper}>
+        <Timing onChangeTime={setMinutes} />
+      </View>
+
       <View style={styles.buttonContainer}>
         {!isStarted ? (
           <RoundedButton title="start" onPress={() => setIsStarted(true)} />
         ) : (
           <RoundedButton title="pause" onPress={() => setIsStarted(false)} />
         )}
+      </View>
+
+      <View style={styles.clearSubjectWrapper}>
+        <RoundedButton onPress={clearSubject} size={50} title="-" />
       </View>
     </View>
   );
@@ -61,9 +80,14 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 0.3,
     flexDirection: "row",
-    padding: 15,
+    padding: spacing.md,
     justifyContent: "center",
     alignItems: "center",
+  },
+  timingWrapper: {
+    flex: 0.1,
+    paddingTop: spacing.xxl,
+    flexDirection: "row",
   },
   title: {
     color: colors.white,
@@ -73,5 +97,9 @@ const styles = StyleSheet.create({
   task: {
     color: colors.white,
     textAlign: "center",
+  },
+  clearSubjectWrapper: {
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
